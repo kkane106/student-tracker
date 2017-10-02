@@ -19,7 +19,7 @@ public class ImageTest {
 	private ImageRepositoy imageRepo;
 	
 	@Test
-	public void test_employee_mappings() {
+	public void test_image_mappings() {
 		Image image = imageRepo.findOne(1);
 		assertEquals(1, image.getId());
 		assertEquals("https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png", image.getUrl());

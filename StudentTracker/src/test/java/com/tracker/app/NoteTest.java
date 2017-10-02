@@ -18,7 +18,7 @@ public class NoteTest {
 	private NoteRepository noteRepo;
 	
 	@Test
-	public void test_employee_mappings() {
+	public void test_note_mappings() {
 		Note note = noteRepo.findOne(1);
 		assertEquals(1, note.getId());
 		assertEquals("Test Topic", note.getTopic());
