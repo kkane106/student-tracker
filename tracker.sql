@@ -27,7 +27,7 @@ USE student_tracker;
 -- Create User with Permissions
 --
 
--- DROP USER 'tracker'@'localhost';
+DROP USER 'tracker'@'localhost';
 CREATE USER `tracker`@`localhost` IDENTIFIED BY 'tracker';
 GRANT SELECT ON `student_tracker`.* TO 'tracker'@'localhost';
 GRANT DELETE ON `student_tracker`.* TO 'tracker'@'localhost';
