@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `street` varchar(100) DEFAULT '',
-  `street 2` varchar(100) DEFAULT '',
+  `street2` varchar(100) DEFAULT '',
   `city` varchar(45) NOT NULL,
   `state` varchar(45) NOT NULL,
   `country` varchar(45) NOT NULL,
