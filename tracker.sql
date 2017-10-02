@@ -22,20 +22,9 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 --
 -- Create SCHEMA
 --
-
+DROP SCHEMA IF EXISTS `student_tracker`;
 CREATE SCHEMA IF NOT EXISTS `student_tracker` DEFAULT CHARACTER SET utf8 ;
 USE `student_tracker` ;
-
---
--- Create User with Permissions
---
-
-DROP USER 'tracker'@'localhost';
-CREATE USER `tracker`@`localhost` IDENTIFIED BY 'tracker';
-GRANT SELECT ON `student_tracker`.* TO 'tracker'@'localhost';
-GRANT DELETE ON `student_tracker`.* TO 'tracker'@'localhost';
-GRANT INSERT ON `student_tracker`.* TO 'tracker'@'localhost';
-GRANT UPDATE ON `student_tracker`.* TO 'tracker'@'localhost';
 
 
 -- -----------------------------------------------------
@@ -48,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`user` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -63,6 +53,8 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`address` (
   `postal_code` VARCHAR(20) NULL DEFAULT '',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
+
 
 
 -- -----------------------------------------------------
@@ -109,6 +101,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`student` (
 ENGINE = InnoDB;
 
 
+
 -- -----------------------------------------------------
 -- Table `student_tracker`.`employee`
 -- -----------------------------------------------------
@@ -127,6 +120,8 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`employee` (
 ENGINE = InnoDB;
 
 
+
+
 -- -----------------------------------------------------
 -- Table `student_tracker`.`contact_type`
 -- -----------------------------------------------------
@@ -135,6 +130,8 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`contact_type` (
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
+
 
 
 -- -----------------------------------------------------
@@ -155,6 +152,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`contact` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -180,6 +178,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`employee_contact` (
 ENGINE = InnoDB;
 
 
+
 -- -----------------------------------------------------
 -- Table `student_tracker`.`student_contact`
 -- -----------------------------------------------------
@@ -203,6 +202,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`student_contact` (
 ENGINE = InnoDB;
 
 
+
 -- -----------------------------------------------------
 -- Table `student_tracker`.`cohort`
 -- -----------------------------------------------------
@@ -215,6 +215,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`cohort` (
   `capacity` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -239,6 +240,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`cohort_student` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -266,6 +268,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`application` (
 ENGINE = InnoDB;
 
 
+
 -- -----------------------------------------------------
 -- Table `student_tracker`.`application_task`
 -- -----------------------------------------------------
@@ -279,29 +282,31 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`application_task` (
 ENGINE = InnoDB;
 
 
+
 -- -----------------------------------------------------
 -- Table `student_tracker`.`application_step`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `student_tracker`.`application_step` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `application_id` INT NOT NULL,
-  `application_task` INT NOT NULL,
+  `application_task_id` INT NOT NULL,
   `completed_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_acceptable` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `application_step_application_idx` (`application_id` ASC),
-  INDEX `application_step_application_task_idx` (`application_task` ASC),
+  INDEX `application_step_application_task_idx` (`application_task_id` ASC),
   CONSTRAINT `application_step_application`
     FOREIGN KEY (`application_id`)
     REFERENCES `student_tracker`.`application` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `application_step_application_task`
-    FOREIGN KEY (`application_task`)
+    FOREIGN KEY (`application_task_id`)
     REFERENCES `student_tracker`.`application_task` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -313,6 +318,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`assignment` (
   `max_score` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -340,6 +346,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`student_assignment` (
 ENGINE = InnoDB;
 
 
+
 -- -----------------------------------------------------
 -- Table `student_tracker`.`cohort_assignment`
 -- -----------------------------------------------------
@@ -363,6 +370,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`cohort_assignment` (
 ENGINE = InnoDB;
 
 
+
 -- -----------------------------------------------------
 -- Table `student_tracker`.`note`
 -- -----------------------------------------------------
@@ -379,6 +387,8 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`note` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
 
 
 -- -----------------------------------------------------
@@ -404,6 +414,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`assignment_note` (
 ENGINE = InnoDB;
 
 
+
 -- -----------------------------------------------------
 -- Table `student_tracker`.`student_note`
 -- -----------------------------------------------------
@@ -426,7 +437,39 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`student_note` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE USER 'tracker' IDENTIFIED BY 'tracker';
+
+-- -------------------------------------------------------
+-- INSERT STATEMENTS
+-- -------------------------------------------------------
+
+INSERT INTO `user` (email, password) VALUES ('test@test.com', 'test');
+INSERT INTO `image` (image_url, title) VALUES ('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', 'Default User Image');
+INSERT INTO `address` (street, street2, city, state, country, postal_code) VALUES ('123 Test Street', 'Apt. 21', 'Testville', 'Colorado', 'United States', '80220');
+INSERT INTO `student` (fname, lname, is_va, user_id, address_id, image_id) VALUES ('Test', 'Test', 1, 1, 1, 1);
+INSERT INTO `employee` (fname, lname, user_id) VALUES ('Test', 'Employee', 1);
+INSERT INTO `contact_type` (name) VALUES ('EMERGENCY');
+INSERT INTO `contact` (fname, lname, email, phone, type_id) VALUES ('Test', 'Test', 'test@test.com', '(555)303-8682', 1);
+INSERT INTO `employee_contact` (employee_id, contact_id) VALUES (1,1);
+INSERT INTO `student_contact` (student_id, contact_id) VALUES (1,1);
+INSERT INTO `cohort` (name, nickname, start_date, end_date, capacity) VALUES ('SDTEST', 'SD TEST', '2008-11-11', '2008-12-12', 23);
+INSERT INTO `cohort_student` (student_id, cohort_id, accepted_date) VALUES (1,1,'2008-01-19 03:14:07');
+INSERT INTO `application` (cohort_id, student_id, create_date, is_active) VALUES (1,1,'2008-01-19 03:14:07',1);
+INSERT INTO `application_task` (name, description, is_active, application_task_order) VALUES ('Resume', 'Resume', 1, 1);
+INSERT INTO `application_step` (application_id, application_task_id, completed_date, is_acceptable) VALUES (1,1, '2008-01-19 03:14:07',1);
+INSERT INTO `assignment` (name, max_score) VALUES ('Test Assignment', 2);
+INSERT INTO `student_assignment` (student_id, assignment_id, is_completed, score) VALUES (1,1,1,1.0);
+INSERT INTO `cohort_assignment` (cohort_id, assignment_id) VALUES (1,1);
+INSERT INTO `note` (employee_id, topic, content) VALUES (1, 'Test Topic', 'Test Content...');
+INSERT INTO `assignment_note` (assignment_id, note_id) VALUES (1,1);
+INSERT INTO `student_note` (student_id, note_id) VALUES (1,1);
+
+
+-- -------------------------------------------------------
+-- CREATE USER
+-- -------------------------------------------------------
+DROP USER 'tracker'@'localhost';
+
+CREATE USER 'tracker'@'localhost' IDENTIFIED BY 'tracker';
 
 GRANT SELECT ON TABLE `student_tracker`.* TO 'tracker';
 GRANT SELECT, INSERT, TRIGGER ON TABLE `student_tracker`.* TO 'tracker';
