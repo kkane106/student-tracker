@@ -27,7 +27,6 @@ public class ApplicationStep {
 //	private ApplicationTast appTask;
 	
 	//gets and sets
-	
 	public int getId() {
 		return id;
 	}
