@@ -1,14 +1,20 @@
 package com.tracker.app.entities;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+import org.springframework.data.web.ProjectedPayload;
 
 @Entity
+@NamedQuery(name="Cohort.findCohortByIdWithApplications", query="SELECT c FROM Cohort c JOIN FETCH c.applications WHERE c.id =?1")
 public class Cohort {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -25,6 +31,9 @@ public class Cohort {
 	private Date endDate;
 	
 	private int capacity;
+	
+	@OneToMany(mappedBy="cohort")
+	private List<Application> applications;
 
 	//gets and sets
 	public int getId() {
@@ -73,6 +82,14 @@ public class Cohort {
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
+	}
+
+	public List<Application> getApplications() {
+		return applications;
+	}
+
+	public void setApplications(List<Application> applications) {
+		this.applications = applications;
 	}
 	
 }

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Contact {
@@ -19,7 +21,9 @@ public class Contact {
 	
 	private String phone;
 
-	// private ContactType type;
+	@ManyToOne
+	@JoinColumn(name="type_id")
+	private ContactType type;
 
 	//gets and sets
 	public int getId() {
@@ -60,6 +64,14 @@ public class Contact {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public ContactType getType() {
+		return type;
+	}
+
+	public void setType(ContactType type) {
+		this.type = type;
 	}
 	
 }

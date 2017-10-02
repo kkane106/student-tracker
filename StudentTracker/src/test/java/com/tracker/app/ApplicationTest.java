@@ -2,6 +2,7 @@ package com.tracker.app;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,27 @@ public class ApplicationTest {
 
 	@Autowired
 	private ApplicationRepository applicationRepo;
+	private Application application;
+	
+	@Before
+	public void setUp() {
+		application = applicationRepo.findOne(1);
+	}
 	
 	@Test
 	public void test_application_mappings() {
-		Application application = applicationRepo.findOne(1);
 		assertEquals(1, application.getId());
 		assertEquals("2008-01-18", application.getCreateDate().toString());
 		assertEquals(true, application.isActive());
+	}
+	
+	@Test
+	public void test_application_to_student() {
+		assertEquals("Test", application.getStudent().getFname());
+	}
+	
+	@Test
+	public void test_application_to_cohort() {
+		assertEquals("SDTEST", application.getCohort().getName());
 	}
 }

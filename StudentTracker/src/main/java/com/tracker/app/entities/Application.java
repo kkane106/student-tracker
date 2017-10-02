@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Application {
@@ -20,8 +22,13 @@ public class Application {
 	@Column(name="is_active")
 	private boolean isActive;
 	
-	//	private Student student;
-	//	private Cohort cohort;
+	@ManyToOne
+	@JoinColumn(name="student_id")
+	private Student student;
+	
+	@ManyToOne
+	@JoinColumn(name="cohort_id")
+	private Cohort cohort;
 
 	//gets and sets
 	public int getId() {
@@ -46,6 +53,22 @@ public class Application {
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public Cohort getCohort() {
+		return cohort;
+	}
+
+	public void setCohort(Cohort cohort) {
+		this.cohort = cohort;
 	}
 	
 }

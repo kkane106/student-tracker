@@ -2,6 +2,7 @@ package com.tracker.app;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,24 @@ import com.tracker.app.repo.ContactRepository;
 public class ContactTest {
 	@Autowired
 	private ContactRepository contactRepo;
+	private Contact contact;
+	
+	@Before
+	public void setUp() {
+		contact = contactRepo.findOne(1);
+	}
 	
 	@Test
 	public void test_contact_mappings() {
-		Contact contact = contactRepo.findOne(1);
 		assertEquals(1, contact.getId());
 		assertEquals("Test", contact.getFname());
 		assertEquals("Test", contact.getLname());
 		assertEquals("test@test.com", contact.getEmail());
 		assertEquals("(555)303-8682", contact.getPhone());
+	}
+	
+	@Test
+	public void test_contact_type() {
+		assertEquals("EMERGENCY", contact.getType().getName());
 	}
 }
