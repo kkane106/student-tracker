@@ -14,7 +14,7 @@ import com.tracker.app.repo.AddressRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AddressEntiryTest {
+public class AddressTest {
 		
 	@Autowired
 	private AddressRepository addressRepo;
@@ -22,13 +22,13 @@ public class AddressEntiryTest {
 	@Test
 	public void test_address_mappings() {
 		Address address = addressRepo.findOne(1);
-		assertEquals("Denver", address.getCity());
+		assertEquals("Testville", address.getCity());
 		assertEquals("United States", address.getCountry());
 		assertEquals(1, address.getId());
-		assertEquals("80210", address.getPostalCode());
+		assertEquals("80220", address.getPostalCode());
 		assertEquals("Colorado", address.getState());
-		assertEquals("2025 S. Gilpin St.", address.getStreet());
-		assertEquals("", address.getStreet2());
+		assertEquals("123 Test Street", address.getStreet());
+		assertEquals("Apt. 21", address.getStreet2());
 
 	}
 	
