@@ -15,6 +15,7 @@ public class ApplicationTask {
 	private int id;
 	
 	private String name;
+	
 	private String description;
 	
 	@Column(name="is_active")

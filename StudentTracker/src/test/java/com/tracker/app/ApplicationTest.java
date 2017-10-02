@@ -22,7 +22,7 @@ public class ApplicationTest {
 	public void test_application_mappings() {
 		Application application = applicationRepo.findOne(1);
 		assertEquals(1, application.getId());
-		assertEquals("2017-12-04", application.getCreateDate().toString());
+		assertEquals("2008-01-18", application.getCreateDate().toString());
 		assertEquals(true, application.isActive());
 	}
 }

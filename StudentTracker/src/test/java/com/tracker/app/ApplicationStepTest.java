@@ -21,7 +21,7 @@ public class ApplicationStepTest {
 	public void test_application_step_mappings() {
 		ApplicationStep applicationStep = applicationStepRepo.findOne(1);
 		assertEquals(1, applicationStep.getId());
-		assertEquals("", applicationStep.getCompleteDate());
+		assertEquals("2008-01-18", applicationStep.getCompletedDate().toString());
 		assertEquals(true, applicationStep.isAcceptable());
 	}
 }
