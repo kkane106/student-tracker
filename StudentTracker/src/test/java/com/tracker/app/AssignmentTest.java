@@ -1,5 +1,7 @@
 package com.tracker.app;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,11 @@ public class AssignmentTest {
 	private AssignmentRepository assignmentRepo;
 	
 	@Test
-	public void test_address_mappings() {
+	public void test_assignment_mappings() {
 		Assignment assignment = assignmentRepo.findOne(1);
-
+		assertEquals(1, assignment.getId());
+		assertEquals("Test Assignment", assignment.getName());
+		assertEquals("2", assignment.getMaxScore());
 	}
 	
 }

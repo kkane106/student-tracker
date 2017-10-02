@@ -16,8 +16,8 @@ public class ApplicationStep {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="complete_date")
-	private Date completeDate;
+	@Column(name="completed_date")
+	private Date completedDate;
 	
 	@Column(name="is_acceptable")
 	private boolean isAcceptable;
@@ -36,12 +36,12 @@ public class ApplicationStep {
 		this.id = id;
 	}
 
-	public Date getCompleteDate() {
-		return completeDate;
+	public Date getCompletedDate() {
+		return completedDate;
 	}
 
-	public void setCompleteDate(Date completeDate) {
-		this.completeDate = completeDate;
+	public void setCompletedDate(Date completeDate) {
+		this.completedDate = completeDate;
 	}
 
 	public boolean isAcceptable() {
