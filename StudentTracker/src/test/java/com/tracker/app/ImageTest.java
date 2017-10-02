@@ -8,20 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.tracker.app.entities.Employee;
-import com.tracker.app.repo.EmployeeRepository;
+import com.tracker.app.entities.Image;
+import com.tracker.app.repo.ImageRepositoy;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EmployeeTest {
+public class ImageTest {
+
 	@Autowired
-	private EmployeeRepository employeeRepo;
+	private ImageRepositoy imageRepo;
 	
 	@Test
 	public void test_employee_mappings() {
-		Employee employee = employeeRepo.findOne(1);
-		assertEquals(1, employee.getId());
-		assertEquals("Test", employee.getFname());
-		assertEquals("Employee", employee.getLname());
+		Image image = imageRepo.findOne(1);
+		assertEquals(1, image.getId());
+		assertEquals("https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png", image.getUrl());
+		assertEquals("Default User Image", image.getTitle());
+
 	}
 }

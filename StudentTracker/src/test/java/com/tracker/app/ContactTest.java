@@ -18,12 +18,12 @@ public class ContactTest {
 	private ContactRepository contactRepo;
 	
 	@Test
-	public void test_cohort_mappings() {
+	public void test_contact_mappings() {
 		Contact contact = contactRepo.findOne(1);
 		assertEquals(1, contact.getId());
 		assertEquals("Test", contact.getFname());
 		assertEquals("Test", contact.getLname());
 		assertEquals("test@test.com", contact.getEmail());
-		assertEquals("(555)3038682", contact.getPhone());
+		assertEquals("(555)303-8682", contact.getPhone());
 	}
 }
