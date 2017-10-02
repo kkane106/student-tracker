@@ -1,8 +1,5 @@
 package com.tracker.app.entities;
 
-import java.sql.Date;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,17 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cohort_student")
-public class CohortStudent {
+@Table(name="contact_type")
+public class ContactType {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private int id;  
 	
-	@Column(name="accepted_date")
-	private Date acceptedDate;
-	
-//	private Student student;
-//	private Cohort cohort
+	private String name;
 
 	//gets and sets
 	public int getId() {
@@ -31,11 +24,13 @@ public class CohortStudent {
 		this.id = id;
 	}
 
-	public Date getAcceptedDate() {
-		return acceptedDate;
+	public String getName() {
+		return name;
 	}
 
-	public void setAcceptedDate(Date acceptedDate) {
-		this.acceptedDate = acceptedDate;
+	public void setName(String name) {
+		this.name = name;
 	}
+	
+	
 }

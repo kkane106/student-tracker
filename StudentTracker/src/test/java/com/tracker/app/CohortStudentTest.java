@@ -19,7 +19,7 @@ public class CohortStudentTest {
 	private CohortStudentRepository cohortStudentRepo;
 	
 	@Test
-	public void test_cohort_mappings() {
+	public void test_cohort_student_mappings() {
 		CohortStudent cohortStudent = cohortStudentRepo.findOne(1);
 		assertEquals(1, cohortStudent.getId());
 		assertEquals("2008-01-18", cohortStudent.getAcceptedDate().toString());
