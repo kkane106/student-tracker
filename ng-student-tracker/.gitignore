@@ -1,7 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-# /dist # Allow dist file to be published to github so that we can view it on pages
+/dist 
 /tmp
 /out-tsc
 
