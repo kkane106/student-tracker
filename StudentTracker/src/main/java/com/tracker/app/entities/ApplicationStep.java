@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="application_step")
 public class ApplicationStep {
@@ -24,10 +27,12 @@ public class ApplicationStep {
 	@Column(name="is_acceptable")
 	private boolean isAcceptable;
 	
+	@JsonBackReference(value = "application_applicationSteps")
 	@ManyToOne
 	@JoinColumn(name="application_id")
 	private Application application;
 	
+	@JsonManagedReference(value = "applicationTask_applicationSteps")
 	@ManyToOne
 	@JoinColumn(name="application_task_id")
 	private ApplicationTask appTask;

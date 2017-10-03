@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @NamedQuery(name="Assignment.findAssignmentByIdWithNotes", query="SELECT a FROM Assignment a JOIN FETCH a.notes WHERE a.id =?1")
 public class Assignment {
@@ -47,6 +49,7 @@ public class Assignment {
 	)
 	private Set<Student> students;
 	
+	@JsonManagedReference(value = "assignment_studentAssignments")
 	@OneToMany(mappedBy="assignment")
 	private Set<StudentAssignment> studentAssignments;
 	

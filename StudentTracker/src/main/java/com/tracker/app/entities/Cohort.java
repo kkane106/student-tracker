@@ -14,6 +14,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @NamedQuery(name="Cohort.findCohortByIdWithApplications", query="SELECT c FROM Cohort c JOIN FETCH c.applications WHERE c.id =?1")
 public class Cohort {
@@ -33,12 +36,15 @@ public class Cohort {
 	
 	private int capacity;
 	
+	@JsonManagedReference(value = "cohort_applications")
 	@OneToMany(mappedBy="cohort")
 	private Set<Application> applications;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy="cohorts")
 	private Set<Assignment> assignments;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="cohort_student", 
 		joinColumns= @JoinColumn(name="cohort_id"), 
@@ -46,6 +52,7 @@ public class Cohort {
 	)
 	private Set<Student> students;
 	
+	@JsonManagedReference(value = "cohort_cohortStudents")
 	@OneToMany(mappedBy="cohort")
 	private Set<CohortStudent> cohortStudents;
 	

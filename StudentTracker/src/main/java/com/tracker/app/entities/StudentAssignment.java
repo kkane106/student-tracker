@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="student_assignment")
 public class StudentAssignment {
@@ -21,11 +24,13 @@ public class StudentAssignment {
 	private boolean completed;
 	
 	private Double score;
-
+	
+	@JsonBackReference(value = "student_studentAssignments")
 	@ManyToOne
 	@JoinColumn(name="student_id")
 	private Student student;
 	
+	@JsonBackReference(value = "assignment_studentAssignments")
 	@ManyToOne
 	@JoinColumn(name="assignment_id")
 	private Assignment assignment;

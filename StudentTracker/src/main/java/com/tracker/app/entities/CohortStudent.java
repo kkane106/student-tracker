@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="cohort_student")
 public class CohortStudent {
@@ -21,10 +23,12 @@ public class CohortStudent {
 	@Column(name="accepted_date")
 	private Date acceptedDate;
 	
+	@JsonBackReference(value = "student_cohortStudents")
 	@ManyToOne
 	@JoinColumn(name="student_id")
 	private Student student;
 	
+	@JsonBackReference(value = "cohort_cohortStudents")
 	@ManyToOne
 	@JoinColumn(name="cohort_id")
 	private Cohort cohort;

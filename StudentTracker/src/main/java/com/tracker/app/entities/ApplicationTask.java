@@ -12,6 +12,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="application_task")
 @NamedQuery(name="ApplicationTask.findApplicationTaskByIdWithApps", query="SELECT a FROM ApplicationTask a JOIN FETCH a.applications WHERE a.id =?1")
@@ -30,9 +33,11 @@ public class ApplicationTask {
 	@Column(name="application_task_order")
 	private int applicationTaskOrder;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="applicationTasks")
 	private Set<Application> applications;
 	
+	@JsonBackReference(value = "applicationTask_applicationSteps")
 	@OneToMany(mappedBy="appTask")
 	private Set<ApplicationStep> applicationSteps;
 

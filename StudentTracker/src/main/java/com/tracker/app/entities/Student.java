@@ -18,6 +18,10 @@ import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @NamedQuery(name="Student.findStudentByIdWithApplications",
 			query="SELECT s FROM Student s JOIN FETCH s.applications WHERE s.id =?1")
@@ -38,7 +42,8 @@ public class Student {
 
 	@Column(name="is_va")
 	private boolean isVa;
-
+	
+	@JsonManagedReference(value = "student_applications")
 	@OneToMany(mappedBy="student")
 	private Set<Application> applications;
 
@@ -50,22 +55,28 @@ public class Student {
 	@JoinColumn(name="address_id")
 	private Address address;
 
+	@JsonManagedReference(value = "student_image")
 	@OneToOne
 	@JoinColumn(name="image_id")
 	private Image image;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy="students")
 	private Set<Cohort> cohorts;
 
+	@JsonBackReference(value = "student_cohortStudents")
 	@OneToMany(mappedBy="student")
 	private Set<CohortStudent> cohortStudents;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy="students")
 	private Set<Assignment> assignments;
 
+	@JsonManagedReference(value = "student_studentAssignments")
 	@OneToMany(mappedBy="student")
 	private Set<StudentAssignment> studentAssignments;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="student_contact",
 		joinColumns= @JoinColumn(name="student_id"),

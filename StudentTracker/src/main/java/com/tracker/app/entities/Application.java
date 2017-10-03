@@ -15,6 +15,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @NamedQuery(name="Application.findApplicationtByIdWithTasks", query="SELECT a FROM Application a JOIN FETCH a.applicationTasks WHERE a.id =?1")
 public class Application {
@@ -28,14 +32,17 @@ public class Application {
 	@Column(name="is_active")
 	private boolean isActive;
 	
+	@JsonBackReference(value = "student_applications")
 	@ManyToOne
 	@JoinColumn(name="student_id")
 	private Student student;
 	
+	@JsonBackReference(value = "cohort_applications")
 	@ManyToOne
 	@JoinColumn(name="cohort_id")
 	private Cohort cohort;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="application_step", 
 		joinColumns= @JoinColumn(name="application_id"), 
@@ -43,6 +50,7 @@ public class Application {
 	)
 	private Set<ApplicationTask> applicationTasks;
 
+	@JsonManagedReference(value = "application_applicationSteps")
 	@OneToMany(mappedBy="application")
 	private Set<ApplicationStep> applicationSteps;
 

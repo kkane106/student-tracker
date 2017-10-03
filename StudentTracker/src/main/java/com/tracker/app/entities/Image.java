@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Image {
 	@Id
@@ -18,6 +20,7 @@ public class Image {
 	
 	private String title;
 	
+	@JsonBackReference(value = "student_image")
 	@OneToOne(mappedBy="image")
 	private Student student;
 
