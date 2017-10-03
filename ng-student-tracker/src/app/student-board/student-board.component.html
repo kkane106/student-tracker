@@ -6,11 +6,13 @@
     <div class="row">
       <div class="col-sm-2 col-lg-2"><strong>First Name</strong></div>
       <div class="col-sm-2 col-lg-2"><strong>Last Name</strong></div>
+      <div class="col-sm-2 col-lg-2"><strong>Cohort</strong></div>
       <div class="col-sm-1 col-lg-1"><strong>VA</strong></div>
     </div>
     <div class="row" *ngFor="let student of students">
       <div class="col-sm-2 col-lg-2">{{student.fname}}</div>
       <div class="col-sm-2 col-lg-2">{{student.lname}}</div>
+      <div class="col-sm-2 col-lg-2">SD?</div>
       <div class="col-sm-1 col-lg-1">{{student.isVa}}</div>
     </div>
   </div>
