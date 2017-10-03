@@ -1,6 +1,7 @@
 package com.tracker.app.entities;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
+@NamedQuery(name="Application.findApplicationtByIdWithTasks", query="SELECT a FROM Application a JOIN FETCH a.applicationTasks WHERE a.id =?1")
 public class Application {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,6 +35,16 @@ public class Application {
 	@ManyToOne
 	@JoinColumn(name="cohort_id")
 	private Cohort cohort;
+	
+	@ManyToMany
+	@JoinTable(name="application_step", 
+		joinColumns= @JoinColumn(name="application_id"), 
+		inverseJoinColumns= @JoinColumn(name="application_task_id")
+	)
+	private List<ApplicationTask> applicationTasks;
+
+	@OneToMany(mappedBy="application")
+	private List<ApplicationStep> applicationSteps;
 
 	//gets and sets
 	public int getId() {
@@ -70,5 +86,22 @@ public class Application {
 	public void setCohort(Cohort cohort) {
 		this.cohort = cohort;
 	}
+	public List<ApplicationTask> getApplicationTasks() {
+		return applicationTasks;
+	}
+
+	public void setApplicationTasks(List<ApplicationTask> applicationTasks) {
+		this.applicationTasks = applicationTasks;
+	}
+
+	public List<ApplicationStep> getApplicationSteps() {
+		return applicationSteps;
+	}
+
+	public void setApplicationSteps(List<ApplicationStep> applicationSteps) {
+		this.applicationSteps = applicationSteps;
+	}
+
+
 	
 }

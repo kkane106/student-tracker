@@ -21,6 +21,14 @@ public class CohortStudent {
 	@Column(name="accepted_date")
 	private Date acceptedDate;
 	
+	@ManyToOne
+	@JoinColumn(name="student_id")
+	private Student student;
+	
+	@ManyToOne
+	@JoinColumn(name="cohort_id")
+	private Cohort cohort;
+	
 	//gets and sets
 	public int getId() {
 		return id;
@@ -36,6 +44,22 @@ public class CohortStudent {
 
 	public void setAcceptedDate(Date acceptedDate) {
 		this.acceptedDate = acceptedDate;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public Cohort getCohort() {
+		return cohort;
+	}
+
+	public void setCohort(Cohort cohort) {
+		this.cohort = cohort;
 	}
 
 }

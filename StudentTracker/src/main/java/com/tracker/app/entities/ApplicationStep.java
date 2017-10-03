@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,9 +24,13 @@ public class ApplicationStep {
 	@Column(name="is_acceptable")
 	private boolean isAcceptable;
 	
+	@ManyToOne
+	@JoinColumn(name="application_id")
+	private Application application;
 	
-//	private Application application;
-//	private ApplicationTast appTask;
+	@ManyToOne
+	@JoinColumn(name="application_task_id")
+	private ApplicationTask appTask;
 	
 	//gets and sets
 	public int getId() {
@@ -49,5 +55,21 @@ public class ApplicationStep {
 
 	public void setAcceptable(boolean isAcceptable) {
 		this.isAcceptable = isAcceptable;
+	}
+
+	public Application getApplication() {
+		return application;
+	}
+
+	public void setApplication(Application application) {
+		this.application = application;
+	}
+
+	public ApplicationTask getAppTask() {
+		return appTask;
+	}
+
+	public void setAppTask(ApplicationTask appTask) {
+		this.appTask = appTask;
 	}	
 }

@@ -41,4 +41,9 @@ public class ApplicationTest {
 	public void test_application_to_cohort() {
 		assertEquals("SDTEST", application.getCohort().getName());
 	}
+	
+	@Test
+	public void test_application_to_tasks() {
+		assertEquals(1, applicationRepo.findApplicationtByIdWithTasks(1).getApplicationTasks().size());
+	}
 }

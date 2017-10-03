@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,9 +22,13 @@ public class StudentAssignment {
 	
 	private Double score;
 
-//	private Student student;
-//	
-//	private Assignment assignment;
+	@ManyToOne
+	@JoinColumn(name="student_id")
+	private Student student;
+	
+	@ManyToOne
+	@JoinColumn(name="assignment_id")
+	private Assignment assignment;
 	
 	//gets and sets
 	public int getId() {
@@ -47,6 +53,22 @@ public class StudentAssignment {
 
 	public void setScore(Double score) {
 		this.score = score;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public Assignment getAssignment() {
+		return assignment;
+	}
+
+	public void setAssignment(Assignment assignment) {
+		this.assignment = assignment;
 	}
 	
 

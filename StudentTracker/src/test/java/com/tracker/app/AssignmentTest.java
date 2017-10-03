@@ -2,6 +2,7 @@ package com.tracker.app;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ public class AssignmentTest {
 
 	@Autowired
 	private AssignmentRepository assignmentRepo;
+	
+	@Before
+	public void setUp() {
+		
+	}
 	
 	@Test
 	public void test_assignment_mappings() {

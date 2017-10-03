@@ -36,4 +36,19 @@ public class StudentTest {
 	public void test_student_to_applications() {
 		assertEquals(1, studentRepo.findStudentByIdWithApplications(1).getApplications().size());
 	}
+	
+	@Test
+	public void test_student_to_user() {
+		assertEquals(1, student.getUser().getId());
+	}
+	
+	@Test
+	public void test_student_to_address() {
+		assertEquals("123 Test Street", student.getAddress().getStreet());
+	}
+	
+	@Test
+	public void test_student_to_image() {
+		assertEquals("https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png", student.getImage().getUrl());
+	}
 }
