@@ -1,6 +1,6 @@
 package com.tracker.app.entities;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,24 +31,24 @@ public class Assignment {
 		joinColumns= @JoinColumn(name="assignment_id"), 
 		inverseJoinColumns= @JoinColumn(name="note_id")
 	)
-	private List<Note> notes;
+	private Set<Note> notes;
 
 	@ManyToMany
 	@JoinTable(name="cohort_assignment", 
 		joinColumns= @JoinColumn(name="assignment_id"), 
 		inverseJoinColumns= @JoinColumn(name="cohort_id")
 	)
-	private List<Cohort> cohorts;
+	private Set<Cohort> cohorts;
 	
 	@ManyToMany
 	@JoinTable(name="student_assignment", 
 		joinColumns= @JoinColumn(name="assignment_id"), 
 		inverseJoinColumns= @JoinColumn(name="student_id")
 	)
-	private List<Student> students;
+	private Set<Student> students;
 	
 	@OneToMany(mappedBy="assignment")
-	private List<StudentAssignment> studentAssignments;
+	private Set<StudentAssignment> studentAssignments;
 	
 	//gets and sets
 	public int getId() {
@@ -75,27 +75,27 @@ public class Assignment {
 		this.maxScore = maxScore;
 	}
 
-	public List<Note> getNotes() {
+	public Set<Note> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<Note> notes) {
+	public void setNotes(Set<Note> notes) {
 		this.notes = notes;
 	}
 
-	public List<Cohort> getCohorts() {
+	public Set<Cohort> getCohorts() {
 		return cohorts;
 	}
 
-	public void setCohorts(List<Cohort> cohorts) {
+	public void setCohorts(Set<Cohort> cohorts) {
 		this.cohorts = cohorts;
 	}
 
-	public List<Student> getStudents() {
+	public Set<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(List<Student> students) {
+	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
 	

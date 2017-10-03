@@ -1,6 +1,6 @@
 package com.tracker.app.entities;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +27,7 @@ public class Note {
 	private Employee employee;
 	
 	@ManyToMany(mappedBy="notes")
-	private List<Assignment> assignments;
+	private Set<Assignment> assignments;
 
 	//gets and sets
 	public int getId() {
@@ -62,11 +62,11 @@ public class Note {
 		this.employee = employee;
 	}
 
-	public List<Assignment> getAssignments() {
+	public Set<Assignment> getAssignments() {
 		return assignments;
 	}
 
-	public void setAssignments(List<Assignment> assignments) {
+	public void setAssignments(Set<Assignment> assignments) {
 		this.assignments = assignments;
 	}
 	

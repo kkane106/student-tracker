@@ -17,15 +17,15 @@ import com.tracker.app.repo.UserRepository;
 public class UserTest {
 	@Autowired
 	private UserRepository userRepo;
-	
+	private User user;
+
 	@Before
 	public void setUp() {
-		
+		 user = userRepo.findOne(1);
 	}
 	
 	@Test
 	public void test_user_mappings() {
-		User user = userRepo.findOne(1);
 		assertEquals(1, user.getId());
 		assertEquals("test@test.com", user.getEmail());
 		assertEquals("test", user.getPassword());

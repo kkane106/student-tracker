@@ -1,6 +1,5 @@
 package com.tracker.app.entities;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -20,56 +19,56 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-@NamedQuery(name="Student.findStudentByIdWithApplications", 
+@NamedQuery(name="Student.findStudentByIdWithApplications",
 			query="SELECT s FROM Student s JOIN FETCH s.applications WHERE s.id =?1")
 @NamedEntityGraph(name = "Student.applicationsWithSteps",
 					attributeNodes = @NamedAttributeNode(value = "applications",
 														subgraph = "steps"),
-					subgraphs = @NamedSubgraph(name = "steps", 
+					subgraphs = @NamedSubgraph(name = "steps",
 												attributeNodes = @NamedAttributeNode("applicationSteps")))
 public class Student {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String fname;
-	
+
 	private String lname;
-	
+
 	@Column(name="is_va")
 	private boolean isVa;
-	
+
 	@OneToMany(mappedBy="student")
 	private Set<Application> applications;
-	
+
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	
+
 	@ManyToOne
 	@JoinColumn(name="address_id")
 	private Address address;
-	
+
 	@OneToOne
 	@JoinColumn(name="image_id")
 	private Image image;
-	
+
 	@ManyToMany(mappedBy="students")
 	private Set<Cohort> cohorts;
-	
+
 	@OneToMany(mappedBy="student")
 	private Set<CohortStudent> cohortStudents;
-	
+
 	@ManyToMany(mappedBy="students")
 	private Set<Assignment> assignments;
-	
+
 	@OneToMany(mappedBy="student")
 	private Set<StudentAssignment> studentAssignments;
-	
+
 	@ManyToMany
-	@JoinTable(name="student_contact", 
-		joinColumns= @JoinColumn(name="student_id"), 
+	@JoinTable(name="student_contact",
+		joinColumns= @JoinColumn(name="student_id"),
 		inverseJoinColumns= @JoinColumn(name="contact_id")
 	)
 	private Set<Contact> contacts;
@@ -179,5 +178,5 @@ public class Student {
 		this.contacts = contacts;
 	}
 
-	
+
 }
