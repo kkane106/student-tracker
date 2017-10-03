@@ -2,6 +2,9 @@ package com.tracker.app;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.tracker.app.entities.Application;
+import com.tracker.app.entities.ApplicationStep;
 import com.tracker.app.entities.Student;
 import com.tracker.app.repo.StudentRepository;
 
@@ -17,6 +22,7 @@ import com.tracker.app.repo.StudentRepository;
 public class StudentTest {
 	@Autowired
 	private StudentRepository studentRepo;
+	
 	private Student student;
 	
 	@Before
@@ -50,5 +56,14 @@ public class StudentTest {
 	@Test
 	public void test_student_to_image() {
 		assertEquals("https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png", student.getImage().getUrl());
+	}
+	
+	@Test
+	public void test_all_students_with_applications() {
+		List<Student> students = new ArrayList<>(); 				
+		studentRepo.findByIdNotNull().forEach(students::add);
+		List<Application> apps = new ArrayList<Application>(students.get(0).getApplications());
+		List<ApplicationStep> steps = new ArrayList<ApplicationStep>(apps.get(0).getApplicationSteps());
+		assertEquals("Resume", steps.get(0).getAppTask().getName());
 	}
 }
