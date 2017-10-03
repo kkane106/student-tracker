@@ -59,11 +59,12 @@ public class StudentTest {
 	}
 	
 	@Test
-	public void test_all_students_with_applications() {
+	public void test_query_students_with_data_for_board() {
 		List<Student> students = new ArrayList<>(); 				
 		studentRepo.findByIdNotNull().forEach(students::add);
 		List<Application> apps = new ArrayList<Application>(students.get(0).getApplications());
 		List<ApplicationStep> steps = new ArrayList<ApplicationStep>(apps.get(0).getApplicationSteps());
 		assertEquals("Resume", steps.get(0).getAppTask().getName());
+		assertEquals("SDTEST", apps.get(0).getCohort().getName());
 	}
 }
