@@ -1,6 +1,6 @@
 package com.tracker.app.entities;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,10 +31,10 @@ public class ApplicationTask {
 	private int applicationTaskOrder;
 	
 	@ManyToMany(mappedBy="applicationTasks")
-	private List<Application> applications;
+	private Set<Application> applications;
 	
 	@OneToMany(mappedBy="appTask")
-	private List<ApplicationStep> applicationSteps;
+	private Set<ApplicationStep> applicationSteps;
 
 	//gets and sets
 	public int getId() {
@@ -76,19 +76,19 @@ public class ApplicationTask {
 	public void setApplicationTaskOrder(int applicationTaskOrder) {
 		this.applicationTaskOrder = applicationTaskOrder;
 	}
-	public List<Application> getApplications() {
+	public Set<Application> getApplications() {
 		return applications;
 	}
 
-	public void setApplications(List<Application> applications) {
+	public void setApplications(Set<Application> applications) {
 		this.applications = applications;
 	}
 
-	public List<ApplicationStep> getApplicationSteps() {
+	public Set<ApplicationStep> getApplicationSteps() {
 		return applicationSteps;
 	}
 
-	public void setApplicationSteps(List<ApplicationStep> applicationSteps) {
+	public void setApplicationSteps(Set<ApplicationStep> applicationSteps) {
 		this.applicationSteps = applicationSteps;
 	}
 }

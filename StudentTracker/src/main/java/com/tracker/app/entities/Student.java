@@ -1,6 +1,6 @@
 package com.tracker.app.entities;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +31,7 @@ public class Student {
 	private boolean isVa;
 	
 	@OneToMany(mappedBy="student")
-	private List<Application> applications;
+	private Set<Application> applications;
 	
 	@OneToOne
 	@JoinColumn(name="user_id")
@@ -46,23 +46,23 @@ public class Student {
 	private Image image;
 	
 	@ManyToMany(mappedBy="students")
-	private List<Cohort> cohorts;
+	private Set<Cohort> cohorts;
 	
 	@OneToMany(mappedBy="student")
-	private List<CohortStudent> cohortStudents;
+	private Set<CohortStudent> cohortStudents;
 	
 	@ManyToMany(mappedBy="students")
-	private List<Assignment> assignments;
+	private Set<Assignment> assignments;
 	
 	@OneToMany(mappedBy="student")
-	private List<StudentAssignment> studentAssignments;
+	private Set<StudentAssignment> studentAssignments;
 	
 	@ManyToMany
 	@JoinTable(name="student_contact", 
 		joinColumns= @JoinColumn(name="student_id"), 
 		inverseJoinColumns= @JoinColumn(name="contact_id")
 	)
-	private List<Contact> contacts;
+	private Set<Contact> contacts;
 
 	//gets and sets
 	public int getId() {
@@ -97,11 +97,11 @@ public class Student {
 		this.isVa = isVa;
 	}
 
-	public List<Application> getApplications() {
+	public Set<Application> getApplications() {
 		return applications;
 	}
 
-	public void setApplications(List<Application> applications) {
+	public void setApplications(Set<Application> applications) {
 		this.applications = applications;
 	}
 
@@ -129,43 +129,43 @@ public class Student {
 		this.image = image;
 	}
 
-	public List<Cohort> getCohorts() {
+	public Set<Cohort> getCohorts() {
 		return cohorts;
 	}
 
-	public void setCohorts(List<Cohort> cohorts) {
+	public void setCohorts(Set<Cohort> cohorts) {
 		this.cohorts = cohorts;
 	}
 
-	public List<CohortStudent> getCohortStudents() {
+	public Set<CohortStudent> getCohortStudents() {
 		return cohortStudents;
 	}
 
-	public void setCohortStudents(List<CohortStudent> cohortStudents) {
+	public void setCohortStudents(Set<CohortStudent> cohortStudents) {
 		this.cohortStudents = cohortStudents;
 	}
 
-	public List<Assignment> getAssignments() {
+	public Set<Assignment> getAssignments() {
 		return assignments;
 	}
 
-	public void setAssignments(List<Assignment> assignments) {
+	public void setAssignments(Set<Assignment> assignments) {
 		this.assignments = assignments;
 	}
 
-	public List<StudentAssignment> getStudentAssignments() {
+	public Set<StudentAssignment> getStudentAssignments() {
 		return studentAssignments;
 	}
 
-	public void setStudentAssignments(List<StudentAssignment> studentAssignments) {
+	public void setStudentAssignments(Set<StudentAssignment> studentAssignments) {
 		this.studentAssignments = studentAssignments;
 	}
 
-	public List<Contact> getContacts() {
+	public Set<Contact> getContacts() {
 		return contacts;
 	}
 
-	public void setContacts(List<Contact> contacts) {
+	public void setContacts(Set<Contact> contacts) {
 		this.contacts = contacts;
 	}
 	

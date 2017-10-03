@@ -1,7 +1,7 @@
 package com.tracker.app.entities;
 
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,10 +41,10 @@ public class Application {
 		joinColumns= @JoinColumn(name="application_id"), 
 		inverseJoinColumns= @JoinColumn(name="application_task_id")
 	)
-	private List<ApplicationTask> applicationTasks;
+	private Set<ApplicationTask> applicationTasks;
 
 	@OneToMany(mappedBy="application")
-	private List<ApplicationStep> applicationSteps;
+	private Set<ApplicationStep> applicationSteps;
 
 	//gets and sets
 	public int getId() {
@@ -86,19 +86,19 @@ public class Application {
 	public void setCohort(Cohort cohort) {
 		this.cohort = cohort;
 	}
-	public List<ApplicationTask> getApplicationTasks() {
+	public Set<ApplicationTask> getApplicationTasks() {
 		return applicationTasks;
 	}
 
-	public void setApplicationTasks(List<ApplicationTask> applicationTasks) {
+	public void setApplicationTasks(Set<ApplicationTask> applicationTasks) {
 		this.applicationTasks = applicationTasks;
 	}
 
-	public List<ApplicationStep> getApplicationSteps() {
+	public Set<ApplicationStep> getApplicationSteps() {
 		return applicationSteps;
 	}
 
-	public void setApplicationSteps(List<ApplicationStep> applicationSteps) {
+	public void setApplicationSteps(Set<ApplicationStep> applicationSteps) {
 		this.applicationSteps = applicationSteps;
 	}
 

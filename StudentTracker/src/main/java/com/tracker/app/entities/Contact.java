@@ -1,6 +1,6 @@
 package com.tracker.app.entities;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,10 +29,10 @@ public class Contact {
 	private ContactType type;
 	
 	@ManyToMany(mappedBy="contacts")
-	private List<Employee> employees;
+	private Set<Employee> employees;
 	
 	@ManyToMany(mappedBy="contacts")
-	private List<Student> students;
+	private Set<Student> students;
 
 	//gets and sets
 	public int getId() {
@@ -83,19 +83,19 @@ public class Contact {
 		this.type = type;
 	}
 
-	public List<Employee> getEmployees() {
+	public Set<Employee> getEmployees() {
 		return employees;
 	}
 
-	public void setEmployees(List<Employee> employees) {
+	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}
 
-	public List<Student> getStudents() {
+	public Set<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(List<Student> students) {
+	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
 	

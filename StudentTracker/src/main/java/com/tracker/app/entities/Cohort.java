@@ -1,7 +1,7 @@
 package com.tracker.app.entities;
 
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,20 +34,20 @@ public class Cohort {
 	private int capacity;
 	
 	@OneToMany(mappedBy="cohort")
-	private List<Application> applications;
+	private Set<Application> applications;
 
 	@ManyToMany(mappedBy="cohorts")
-	private List<Assignment> assignments;
+	private Set<Assignment> assignments;
 	
 	@ManyToMany
 	@JoinTable(name="cohort_student", 
 		joinColumns= @JoinColumn(name="cohort_id"), 
 		inverseJoinColumns= @JoinColumn(name="student_id")
 	)
-	private List<Student> students;
+	private Set<Student> students;
 	
 	@OneToMany(mappedBy="cohort")
-	private List<CohortStudent> cohortStudents;
+	private Set<CohortStudent> cohortStudents;
 	
 	//gets and sets
 	public int getId() {
@@ -98,35 +98,35 @@ public class Cohort {
 		this.capacity = capacity;
 	}
 
-	public List<Application> getApplications() {
+	public Set<Application> getApplications() {
 		return applications;
 	}
 
-	public void setApplications(List<Application> applications) {
+	public void setApplications(Set<Application> applications) {
 		this.applications = applications;
 	}
 
-	public List<Assignment> getAssignments() {
+	public Set<Assignment> getAssignments() {
 		return assignments;
 	}
 
-	public void setAssignments(List<Assignment> assignments) {
+	public void setAssignments(Set<Assignment> assignments) {
 		this.assignments = assignments;
 	}
 
-	public List<Student> getStudents() {
+	public Set<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(List<Student> students) {
+	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
 
-	public List<CohortStudent> getCohortStudents() {
+	public Set<CohortStudent> getCohortStudents() {
 		return cohortStudents;
 	}
 
-	public void setCohortStudents(List<CohortStudent> cohortStudents) {
+	public void setCohortStudents(Set<CohortStudent> cohortStudents) {
 		this.cohortStudents = cohortStudents;
 	}
 	
