@@ -7,16 +7,25 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
+import { VirtualScrollModule } from 'angular2-virtual-scroll';
+import { StudentBoardComponent } from './student-board/student-board.component';
+import { BoardItemComponent } from './board-item/board-item.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    StudentBoardComponent,
+    BoardItemComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    VirtualScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

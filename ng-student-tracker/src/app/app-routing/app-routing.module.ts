@@ -1,3 +1,4 @@
+import { StudentBoardComponent } from './../student-board/student-board.component';
 import { LoginComponent } from './../login/login.component';
 import { HomeComponent } from './../home/home.component';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,11 @@ const routes: Routes = [
     path: 'home',
     pathMatch: 'full',
     component: HomeComponent
+  },
+  {
+    path: 'board',
+    pathMatch: 'full',
+    component: StudentBoardComponent
   }
 ];
 
