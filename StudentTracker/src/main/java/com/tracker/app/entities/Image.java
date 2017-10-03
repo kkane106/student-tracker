@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Image {
@@ -16,6 +17,9 @@ public class Image {
 	private String url;
 	
 	private String title;
+	
+	@OneToOne(mappedBy="image")
+	private Student student;
 
 	//gets and sets
 	public int getId() {
@@ -40,6 +44,14 @@ public class Image {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 	
 	

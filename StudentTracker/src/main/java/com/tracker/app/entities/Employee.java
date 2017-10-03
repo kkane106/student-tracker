@@ -1,11 +1,20 @@
 package com.tracker.app.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
+@NamedQuery(name="Employee.findEmployeeByIdWithNotes", query="SELECT e FROM Employee e JOIN FETCH e.notes WHERE e.id =?1")
 public class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -15,8 +24,19 @@ public class Employee {
 	
 	private String lname;
 	
-//	private User user;
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
+	@OneToMany(mappedBy="employee")
+	private List<Note> notes;
+	
+	@ManyToMany
+	@JoinTable(name="employee_contact", 
+		joinColumns= @JoinColumn(name="employee_id"), 
+		inverseJoinColumns= @JoinColumn(name="contact_id")
+	)
+	private List<Contact> contacts;
 	
 	//gets and sets
 	public int getId() {
@@ -41,6 +61,30 @@ public class Employee {
 
 	public void setLname(String lname) {
 		this.lname = lname;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
 	}
 	
 	
