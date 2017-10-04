@@ -14,7 +14,7 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
-	@GetMapping(path = "/students/board")
+	@GetMapping(path = "/students")
 	public Collection<Student> getStudentsForStudentBoard() {
 		return studentService.findAllStudentsWithApplicationsAndSteps();
 	}

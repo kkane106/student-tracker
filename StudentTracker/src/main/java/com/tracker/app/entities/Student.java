@@ -43,7 +43,7 @@ public class Student {
 	@Column(name="is_va")
 	private boolean isVa;
 	
-	@JsonManagedReference(value = "student_applications")
+	@JsonBackReference(value = "student_applications")
 	@OneToMany(mappedBy="student")
 	private Set<Application> applications;
 
@@ -64,7 +64,7 @@ public class Student {
 	@ManyToMany(mappedBy="students")
 	private Set<Cohort> cohorts;
 
-	@JsonBackReference(value = "student_cohortStudents")
+	@JsonManagedReference(value = "student_cohortStudents")
 	@OneToMany(mappedBy="student")
 	private Set<CohortStudent> cohortStudents;
 

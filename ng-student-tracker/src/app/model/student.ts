@@ -7,7 +7,7 @@ export class Student {
     private id: number;
     private fname: string;
     private lname: string;
-    private isVa: boolean;
+    private va: boolean;
     private user: User;
     private address: Address;
     private image: Image;
@@ -18,6 +18,6 @@ export class Student {
         this.id = id;
         this.fname = f;
         this.lname = l;
-        this.isVa = va;
+        this.va = va;
     }
 }

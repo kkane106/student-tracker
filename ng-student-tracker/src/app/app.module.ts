@@ -1,6 +1,9 @@
+import { ApplicationService } from './application.service';
+import { StudentService } from './student.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -25,9 +28,13 @@ import { SideNavComponent } from './side-nav/side-nav.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    VirtualScrollModule
+    VirtualScrollModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [
+    StudentService,
+    ApplicationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

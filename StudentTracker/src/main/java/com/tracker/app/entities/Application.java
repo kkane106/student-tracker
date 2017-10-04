@@ -32,7 +32,7 @@ public class Application {
 	@Column(name="is_active")
 	private boolean isActive;
 	
-	@JsonBackReference(value = "student_applications")
+	@JsonManagedReference(value = "student_applications")
 	@ManyToOne
 	@JoinColumn(name="student_id")
 	private Student student;
