@@ -1,3 +1,4 @@
+import { AuthenticationService } from './authentication.service';
 import { Application } from './model/application';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -9,13 +10,15 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ApplicationService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private authService: AuthenticationService) { }
 
   getApplications(): Observable<Application[]> {
     return this.http
-                  .get('http://localhost:8080/applications')
+                  .get('http://localhost:8080/applications', {
+                    headers: this.authService.getTokenHeader()
+                  })
                   .map(response => response.json())
-                  .do(data => console.log(data))
+                  // .do(data => console.log(data))
                   .catch(this.handleError);
   }
 

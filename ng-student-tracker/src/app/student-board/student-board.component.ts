@@ -25,7 +25,6 @@ export class StudentBoardComponent implements OnInit {
     this.appService.getApplications()
       .subscribe(
         applications => {
-          console.log(applications);
           this.applications = applications;
         },
         error => console.error(error)

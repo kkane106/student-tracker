@@ -10,8 +10,12 @@ import com.tracker.app.repo.StudentRepository;
 
 @Service
 public class StudentService {
-	@Autowired
+
 	private StudentRepository studentRepo;
+	
+	public StudentService(StudentRepository studentRepo) {
+		this.studentRepo = studentRepo;
+	}
 	
 	/**
 	 * Returns collection of all <code>Student</code> objects

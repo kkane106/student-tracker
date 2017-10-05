@@ -1,9 +1,11 @@
+import { AuthenticationService } from './authentication.service';
 import { ApplicationService } from './application.service';
 import { StudentService } from './student.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -29,11 +31,13 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     BrowserModule,
     AppRoutingModule,
     VirtualScrollModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [
     StudentService,
-    ApplicationService
+    ApplicationService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

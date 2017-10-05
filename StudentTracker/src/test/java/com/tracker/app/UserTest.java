@@ -30,4 +30,9 @@ public class UserTest {
 		assertEquals("test@test.com", user.getEmail());
 		assertEquals("test", user.getPassword());
 	}
+	
+	@Test
+	public void test_findByUsername() {
+		assertEquals("test", userRepo.findByUsername("test"));
+	}
 }

@@ -34,8 +34,10 @@ CREATE TABLE IF NOT EXISTS `student_tracker`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
 
 
@@ -442,7 +444,7 @@ ENGINE = InnoDB;
 -- INSERT STATEMENTS
 -- -------------------------------------------------------
 
-INSERT INTO `user` (email, password) VALUES ('test@test.com', 'test');
+INSERT INTO `user` (email, password, username) VALUES ('test@test.com', 'test', 'test');
 INSERT INTO `image` (image_url, title) VALUES ('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', 'Default User Image');
 INSERT INTO `address` (street, street2, city, state, country, postal_code) VALUES ('123 Test Street', 'Apt. 21', 'Testville', 'Colorado', 'United States', '80220');
 INSERT INTO `student` (fname, lname, is_va, user_id, address_id, image_id) VALUES ('Test', 'Test', 1, 1, 1, 1);
