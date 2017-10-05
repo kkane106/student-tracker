@@ -26,4 +26,9 @@ public class ValidationService {
 		return matcher.find();
 	}
 	
+	public boolean validateUsername(String usernameStr) {
+		Matcher matcher = VALID_USERNAME_REGEX.matcher(usernameStr);
+		return matcher.find();
+	}
+	
 }

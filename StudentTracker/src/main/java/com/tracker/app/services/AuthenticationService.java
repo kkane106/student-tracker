@@ -32,17 +32,14 @@ public class AuthenticationService implements UserDetailsService {
 		if (!validationService.validatePassword(user.getPassword())) {
 			return null;
 		}
-		
+		if (!validationService.validateUsername(user.getUsername())) {
+			return null;
+		}
 		user.setPassword(encoder.encode(user.getPassword()));
 		user = userRepo.save(user);
 		return user;
 	}
 	
-	public User login(User user) {
-//		TODO: Implement this method;
-		return user;
-	}
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepo.findByUsername(username);
