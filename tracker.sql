@@ -473,6 +473,6 @@ DROP USER 'tracker'@'localhost';
 
 CREATE USER 'tracker'@'localhost' IDENTIFIED BY 'tracker';
 
-GRANT SELECT ON TABLE `student_tracker`.* TO 'tracker';
-GRANT SELECT, INSERT, TRIGGER ON TABLE `student_tracker`.* TO 'tracker';
-GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `student_tracker`.* TO 'tracker';
+GRANT SELECT ON TABLE `student_tracker`.* TO 'tracker'@'localhost';
+GRANT SELECT, INSERT, TRIGGER ON TABLE `student_tracker`.* TO 'tracker'@'localhost';
+GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `student_tracker`.* TO 'tracker'@'localhost';
