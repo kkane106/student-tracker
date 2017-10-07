@@ -66,9 +66,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		CorsConfiguration config = new CorsConfiguration();
 
 		config.setAllowCredentials(true);
-		config.addAllowedOrigin("http://localhost:4200");
-		config.addAllowedOrigin("http://localhost");
-		config.addAllowedOrigin("http://localhost:443");
+		// These are commented because they disallow postman
+//		config.addAllowedOrigin("http://localhost:4200"); // should set this from build for dev
+//		config.addAllowedOrigin("http://localhost"); // should set this from build for prod over 80
+//		config.addAllowedOrigin("http://localhost:443"); // should set this from build for prod ssl
+		config.addAllowedOrigin("*"); // need to sort out POSTMAN issue
 		config.addAllowedHeader("*");
 		config.setExposedHeaders(Arrays.asList("x-access-token", "Authorization", "Origin", "Accept"));
 		config.addAllowedMethod("OPTIONS");
