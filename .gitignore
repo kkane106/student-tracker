@@ -36,3 +36,6 @@ settings.xml
 target
 transaction-logs
 node_modules
+
+# Properties files to ignore
+jwt.properties
