@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,20 +26,20 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 	private AuthenticationManager authenticationManager;
 
-//	@Value("${jwt.secret}")
-	private final String SECRET = "banana";
+	@Value("${JWT_SECRET}")
+	private String SECRET; // = "banana";
 
-//	@Value("${jwt.expiration-time}")
-	private final long EXPIRATION_TIME = 864_000_000;
+	@Value("${JWT_EXPIRATION}")
+	private long EXPIRATION_TIME; // = 864_000_000;
 
-//	@Value("${jwt.token-prefix}")
-	private final String TOKEN_PREFIX = "Bearer ";
+	@Value("${JWT_PREFIX}")
+	private String TOKEN_PREFIX; // = "Bearer ";
 
-//	@Value("${jwt.header-string}")
-	private final String HEADER_STRING = "x-access-token";
+	@Value("${JWT_HEADER}")
+	private String HEADER_STRING; // = "x-access-token";
 
-//	@Value("${jwt.sign-up-url}")
-	private final String SIGN_UP_URL = "/auth/register";
+	@Value("${JWT_REGISTER_URL}")
+	private String SIGN_UP_URL; // = "/auth/register";
 
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;

@@ -2,6 +2,7 @@ package com.tracker.app.configuration;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,8 +26,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	// @Value("${jwt.sign-up-url}")
-	private final String SIGN_UP_URL = "/auth/register";
+	 @Value("${JWT_REGISTER_URL}")
+	private String SIGN_UP_URL; // = "/auth/register";
 
 	public WebSecurity(AuthenticationService authService, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.authService = authService;
@@ -65,16 +66,18 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		CorsConfiguration config = new CorsConfiguration();
 
 		config.setAllowCredentials(true);
-		config.addAllowedOrigin("http://localhost:4200");
-		config.addAllowedOrigin("http://localhost");
-		config.addAllowedOrigin("http://localhost:443");
+//		config.addAllowedOrigin("http://localhost:4200");
+//		config.addAllowedOrigin("http://localhost");
+//		config.addAllowedOrigin("http://localhost:443");
+		config.addAllowedOrigin("*");
 		config.addAllowedHeader("*");
-		config.setExposedHeaders(Arrays.asList("x-access-token", "Authorization", "Origin", "Accept"));
+		config.setExposedHeaders(Arrays.asList("x-access-token", "Authorization", "Origin", "Accept", ""));
 		config.addAllowedMethod("OPTIONS");
 		config.addAllowedMethod("GET");
 		config.addAllowedMethod("POST");
 		config.addAllowedMethod("PUT");
 		config.addAllowedMethod("DELETE");
+		
 
 		source.registerCorsConfiguration("/**", config);
 

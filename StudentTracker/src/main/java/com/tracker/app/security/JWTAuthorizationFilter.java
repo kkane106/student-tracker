@@ -18,14 +18,14 @@ import io.jsonwebtoken.Jwts;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 	
-//	@Value("${jwt.secret}")
-	private final String SECRET = "banana";
+	@Value("${JWT_SECRET}")
+	private String SECRET; // = "banana";
 
-//	@Value("${jwt.token-prefix}")
-	private final String TOKEN_PREFIX = "Bearer ";
+	@Value("${JWT_PREFIX}")
+	private String TOKEN_PREFIX; // = "Bearer ";
 
-//	@Value("${jwt.header-string}")
-	private final String HEADER_STRING = "x-access-token";
+	@Value("${JWT_HEADER}")
+	private String HEADER_STRING; // = "x-access-token";
 
 	public JWTAuthorizationFilter(AuthenticationManager authManager) {
 		super(authManager);

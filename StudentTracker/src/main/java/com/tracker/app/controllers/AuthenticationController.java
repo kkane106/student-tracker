@@ -2,7 +2,6 @@ package com.tracker.app.controllers;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,6 @@ import com.tracker.app.services.AuthenticationService;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(allowedHeaders="x-access-token", exposedHeaders="x-access-token", origins= {"http://localhost:4200", "http://localhost"})
 public class AuthenticationController {
 
 	private AuthenticationService authService;
