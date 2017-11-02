@@ -26,8 +26,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	 @Value("${JWT_REGISTER_URL}")
-	private String SIGN_UP_URL; // = "/auth/register";
+//	 @Value("${JWT_REGISTER_URL}")
+	private String SIGN_UP_URL = "/auth/register";
 
 	public WebSecurity(AuthenticationService authService, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.authService = authService;

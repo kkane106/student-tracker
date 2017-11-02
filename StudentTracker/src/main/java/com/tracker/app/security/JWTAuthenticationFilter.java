@@ -26,20 +26,20 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 	private AuthenticationManager authenticationManager;
 
-	@Value("${JWT_SECRET}")
-	private String SECRET; // = "banana";
+	// @Value("${JWT_SECRET}")
+	private String SECRET = "banana";
 
-	@Value("${JWT_EXPIRATION}")
-	private long EXPIRATION_TIME; // = 864_000_000;
+	// @Value("${JWT_EXPIRATION}")
+	private long EXPIRATION_TIME = 864_000_000;
 
-	@Value("${JWT_PREFIX}")
-	private String TOKEN_PREFIX; // = "Bearer ";
+	// @Value("${JWT_PREFIX}")
+	private String TOKEN_PREFIX = "Bearer ";
 
-	@Value("${JWT_HEADER}")
-	private String HEADER_STRING; // = "x-access-token";
+	// @Value("${JWT_HEADER}")
+	private String HEADER_STRING = "x-access-token";
 
-	@Value("${JWT_REGISTER_URL}")
-	private String SIGN_UP_URL; // = "/auth/register";
+	// @Value("${JWT_REGISTER_URL}")
+	private String SIGN_UP_URL = "/auth/register";
 
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
@@ -49,7 +49,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
 			throws AuthenticationException {
 		try {
-			
+
 			com.tracker.app.entities.User creds = new ObjectMapper().readValue(req.getInputStream(),
 					com.tracker.app.entities.User.class);
 			return authenticationManager.authenticate(

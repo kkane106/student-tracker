@@ -23,7 +23,7 @@ public class StudentTrackerApplication {
 	@Bean
 	public PropertyPlaceholderConfigurer injectPlaceholderConfigurer() {
 		PropertyPlaceholderConfigurer config = new PropertyPlaceholderConfigurer();
-		config.setLocation(new ClassPathResource("jwt.properties"));
+//		config.setLocation(new ClassPathResource("jwt.properties"));
 
 		return config;
 	}

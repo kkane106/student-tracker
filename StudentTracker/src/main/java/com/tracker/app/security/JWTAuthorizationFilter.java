@@ -17,15 +17,15 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import io.jsonwebtoken.Jwts;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
-	
-	@Value("${JWT_SECRET}")
-	private String SECRET; // = "banana";
 
-	@Value("${JWT_PREFIX}")
-	private String TOKEN_PREFIX; // = "Bearer ";
+	// @Value("${JWT_SECRET}")
+	private String SECRET = "banana";
 
-	@Value("${JWT_HEADER}")
-	private String HEADER_STRING; // = "x-access-token";
+	// @Value("${JWT_PREFIX}")
+	private String TOKEN_PREFIX = "Bearer ";
+
+	// @Value("${JWT_HEADER}")
+	private String HEADER_STRING = "x-access-token";
 
 	public JWTAuthorizationFilter(AuthenticationManager authManager) {
 		super(authManager);
